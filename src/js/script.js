@@ -8,9 +8,9 @@ let produtoAdicionado=[]
 
 // ATUALIZAR A TELA COM PRODUTOS DINAMICOS
 function atualizaProdutos(font= produtos){
-    font.forEach((item)=>criarCardsProdutos(item.img,item.nome,item.preco,item.secao,item.categoria, item.componentes, item.id));
+  produto.innerHTML=''
+    font.forEach((item)=>criarCardsProdutos(item.img,item.nome,item.preco,item.secao,item.categoria, item.componentes,item.id));
 
-  // MOSTRAR O PREÇO DO QUE APARECE NA TELA
   
 }
 atualizaProdutos()
@@ -35,9 +35,7 @@ produto.appendChild(liProdutos)
 const containerCarrinho= document.getElementById('carrinho');
 const ulCarrinho= document.createElement('ul')
 containerCarrinho.appendChild(ulCarrinho)
-
 const botaoAddCarrinho= document.querySelectorAll(".adicionarCarrinho")
-
 
 function criarCardsCarrinho(event){
     const prodCarrinho= document.createElement('li')
@@ -45,8 +43,6 @@ function criarCardsCarrinho(event){
     prodCarrinho.innerHTML= htmlProdCarrinho(idProd.id);
     reducePrecos(produtoAdicionado)
 
-console.log(idProd.id)
-console.log(prodCarrinho)
 ulCarrinho.appendChild(prodCarrinho)
 
 }
@@ -64,10 +60,13 @@ function htmlProdCarrinho(idProd){
 }
 
 
+// MOSTRAR O PREÇO NO CARRINHO
+let span= document.getElementById('precoTotal')
 
-
-
-
+function reducePrecos(arr){
+let total =arr.reduce((valorFinal, item) =>{ return valorFinal+Number(item.preco)} ,0)
+return span.innerText=total
+}
 
  
 //BUSCAR CONTEÚDO PELO NOME
@@ -83,47 +82,28 @@ function buscarConteudo(event){
   const filtedName= produtos.filter((letra)=>{
     return letra.nome.toLowerCase().includes(textToSearch.toLowerCase());
   })
-
-  // MOSTRAR O PREÇO DO QUE APARECE NA TELA
-  const ul= document.querySelector("ul")
-  ul.innerHTML=''
   atualizaProdutos(filtedName)
 }
 
 
 //FILTRAR POR CATEGORIA//
-let containerFilter= document.getElementById("filterCategory")
-containerFilter.addEventListener("click",filterContent)
+let categoryFilterBtn= document.getElementById("hortifrutiBtn")
+categoryFilterBtn.addEventListener("click",filterContentClicked)
+let btnShowAllItens= document.getElementById("motrar-todos");
+btnShowAllItens.addEventListener("click",filterContentClicked)
 
-function filterContent(e){
-    let btnFilter= document.querySelectorAll(".filter");
+function filterContentClicked(e){
+    
     let  itemClicked= e.target; 
-    
-   
-    if(itemClicked.id!="filters"){
-      
-      let secaoConteudoClicado= itemClicked.innerText;
-        
-      const filtedCat= produtos.filter(char=>{
-        return char.secao.includes('Hortifruti');
-      })
-      if(secaoConteudoClicado==='Mostrar Todos'){
-        ul.innerHTML=''
-        atualizaProdutos();
+    const filtedCat= produtos.filter(char=>{
+      return char.secao.includes('Hortifruti');
+    })
+    if(itemClicked.id=="hortifrutiBtn"){
+      atualizaProdutos(filtedCat);
       }else{
-  
-      ul.innerHTML=''
-      atualizaProdutos(filtedCat)
+        atualizaProdutos();
       }
-    }
-    
 }
 
 
-// MOSTRAR O PREÇO DO QUE APARECE NA TELA
-let span= document.getElementById('precoTotal')
 
-function reducePrecos(arr){
-let total =arr.reduce((valorFinal, item) =>{ return valorFinal+Number(item.preco)} ,0)
-return span.innerText=total
-}
