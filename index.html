@@ -11,13 +11,15 @@
     <title>Lista de Produtos - Continuação</title>
 </head>
 <body>
+    
 
     <!-- CABEÇALHO -->
     <header>
         <div id="filters" class="filtersContainer">
-            
-            <button class="estiloGeralBotoes estiloGeralBotoes--mostrarTodos">Mostrar Todos</button>
-            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarHortifruti">Mostrar Hortifruti</button>
+            <div id="filterCategory" class="filtersContainer">
+                <button class="filter current-category estiloGeralBotoes estiloGeralBotoes--mostrarTodos">Mostrar Todos</button>
+                <button class="estiloGeralBotoes estiloGeralBotoes--filtrarHortifruti filter">Mostrar Hortifruti</button>
+              </div>
 
             <div class="containerBuscaPorNome">
                 
@@ -32,15 +34,15 @@
         <div class="containerListaProdutos" id="listProdutos">
             <ul>
                 <!-- LISTA DE PRODUTOS -->
-
             </ul>
+            
         </div>
 
         <div id="carrinho" class="containerCarrinho">
-            <ul>
+            
                 <!-- ITENS ADICIONADOS AO CARRINHO -->
 
-            </ul>
+            
 
             <div class="containerPrecoTotal">
                 <p>Preço total: R$<span id="precoTotal">00.00</span></p>

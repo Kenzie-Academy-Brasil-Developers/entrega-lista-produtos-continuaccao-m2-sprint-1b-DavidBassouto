@@ -115,7 +115,6 @@ main{
 }
 
 .containerListaProdutos ul li ol{
-    list-style: inside decimal;
     text-align: left;
 }
 .containerListaProdutos ul li ol li{
