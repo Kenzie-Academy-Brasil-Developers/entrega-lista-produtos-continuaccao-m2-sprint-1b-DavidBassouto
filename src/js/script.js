@@ -69,9 +69,12 @@ return span.innerText=total
 }
 
  
+
 //BUSCAR CONTEÚDO PELO NOME
 const botaoDeBusca= document.querySelector('.estiloGeralBotoes--botaoBuscaPorNome')
 botaoDeBusca.addEventListener("click", buscarConteudo)
+
+
 
 function buscarConteudo(event){
     event.preventDefault();
@@ -80,9 +83,10 @@ function buscarConteudo(event){
   let textToSearch= buscaPorNome.value;
   
   const filtedName= produtos.filter((letra)=>{
-    return letra.nome.toLowerCase().includes(textToSearch.toLowerCase());
+    return letra.nome.toLowerCase().includes(textToSearch.toLowerCase()) || letra.secao.toLowerCase().includes(textToSearch.toLowerCase()) || letra.categoria.toLowerCase().includes(textToSearch.toLowerCase())
   })
   atualizaProdutos(filtedName)
+  console.log(filtedName)
 }
 
 
